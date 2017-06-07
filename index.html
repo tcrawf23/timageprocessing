@@ -30,6 +30,30 @@
             padding: 0 10px;
         }
 
+        #top-nav ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        #top-nav ul li {
+            display: inline-block;
+            color: #777;
+            font-size: 14px;
+            line-height: 3.5;
+            padding-left: 5px;
+            padding-right: 5px;
+            cursor: pointer;
+        }
+
+        #top-nav ul li.selected {
+            line-height: 3.1;
+            color: #333;
+            border-bottom-color: #82C925;
+            border-bottom-style: solid;
+            border-bottom-width: 3px;
+            font-weight: 500;
+        }
+
         h1,
         h2,
         h3 {
@@ -44,9 +68,16 @@
 
 <body>
     <div id="top-nav">
-        <img src="favicon.png" height="32" style="padding-top: 7px;padding-left: 20px;display: inline-block;">
-        <p style="display: inline-block;vertical-align: top;color: #888;font-size: 18px;line-height: 8px;padding-left: 10px;">
-            <strong style="color: #333;font-weight: 600">timage</strong>processing</p>
+        <div style="position:absolute">
+            <img src="favicon.png" height="32" style="padding-top: 7px;padding-left: 20px;display: inline-block;">
+            <div style="display: inline-block;vertical-align: top;color: #888;font-size: 18px;line-height:2.6;padding-left: 10px;">
+                <strong style="color: #333;font-weight: 600">timage</strong>processing</div>
+        </div>
+        <ul style="display: inline-block; width:100%; text-align:center">
+            <li class="selected">K-Means</li>
+            <li>Texture Synthesis</li>
+            <li>Edge Detection</li>
+        </ul>
     </div>
     <div id="content">
         <header>
@@ -73,5 +104,17 @@
 
     </div>
 </body>
+
+<script src="jquery.js"></script>
+<script>
+
+$(function() {
+    $('#top-nav ul li').on('click', function() {
+        $('#top-nav ul li.selected').removeClass();
+        $(this).addClass('selected');
+    })
+})
+
+</script>
 
 </html>
