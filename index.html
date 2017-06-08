@@ -21,15 +21,6 @@
             border-bottom-color: #E8E8E8;
         }
 
-        #content {
-            margin: 40px auto;
-            max-width: 650px;
-            line-height: 1.7;
-            font-size: 16px;
-            color: #555;
-            padding: 0 10px;
-        }
-
         #top-nav ul {
             margin: 0;
             padding: 0;
@@ -54,6 +45,20 @@
             font-weight: 500;
         }
 
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+            margin: 40px auto;
+            max-width: 650px;
+            line-height: 1.7;
+            font-size: 16px;
+            color: #555;
+            padding: 0 10px;
+        }
+
         h1,
         h2,
         h3 {
@@ -74,12 +79,12 @@
                 <strong style="color: #333;font-weight: 600">timage</strong>processing</div>
         </div>
         <ul style="display: inline-block; width:100%; text-align:center">
-            <li class="selected">K-Means</li>
-            <li>Texture Synthesis</li>
-            <li>Edge Detection</li>
+            <li rel="k-means" class="selected">K-Means</li>
+            <li rel="texture-synthesis">Texture Synthesis</li>
+            <li rel="edge-detection">Edge Detection</li>
         </ul>
     </div>
-    <div id="content">
+    <div id="k-means" class="content active">
         <header>
             <h1>Welcome to Timage Processing</h1>
 
@@ -101,19 +106,41 @@
             Dough, and then, well, you know...</p>
         <blockquote>"Never put off until tomorrow what you can do the day after tomorrow."
             <br> - Mark Twain</blockquote>
+    </div>
 
+    <div id="texture-synthesis" class="content">
+        <header>
+            <h1>Congratulations!</h1>
+
+        </header>
+        <p>You clicked on the <strong>Texture Synthesis</strong> tab! You should feel proud of your accomplishments. In fact, I think some CanAm pizza is the only appropriate way to reward yourself for this. In fact, the number is <strong style="font-weight: 500;">(425) 747-7777</strong>, that way you don't have to waste precious seconds looking it up. You're welcome.</p>
+    </div>
+
+    <div id="edge-detection" class="content">
+        <header>
+            <h1>-_____-</h1>
+
+        </header>
+        <p>Alright now you're just showing off...</p>
     </div>
 </body>
 
 <script src="jquery.js"></script>
 <script>
+    $(function () {
+        $('#top-nav ul li').on('click', function () {
+            //figure out which content to show
+            var panelToShow = $(this).attr('rel');
 
-$(function() {
-    $('#top-nav ul li').on('click', function() {
-        $('#top-nav ul li.selected').removeClass();
-        $(this).addClass('selected');
+            //hide the current content and deselect the tab
+            $('.content.active').removeClass('active');
+            $('#top-nav ul li.selected').removeClass();
+
+            //show the new content and select the tab
+            $('#'+panelToShow).addClass('active');
+            $(this).addClass('selected');
+        })
     })
-})
 
 </script>
 
