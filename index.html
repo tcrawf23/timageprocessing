@@ -59,6 +59,24 @@
             padding: 0 10px;
         }
 
+        button {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #82C925;
+            border: none;
+            border-radius: 2px;
+            color: white;
+            font-size: 16px;
+            height: 48px;
+            padding: 0 24px;
+            text-decoration: none;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #6B9933;
+        }
+
         h1,
         h2,
         h3 {
@@ -113,20 +131,25 @@
             <h1>Congratulations!</h1>
 
         </header>
-        <p>You clicked on the <strong>Texture Synthesis</strong> tab! You should feel proud of your accomplishments. In fact, I think some CanAm pizza is the only appropriate way to reward yourself for this. In fact, the number is <strong style="font-weight: 500;">(425) 747-7777</strong>, that way you don't have to waste precious seconds looking it up. You're welcome.</p>
+        <p>You clicked on the <strong>Texture Synthesis</strong> tab! You should feel proud of your accomplishments. In fact,
+            I think some CanAm pizza is the only appropriate way to reward yourself for this. In fact, the number is
+            <strong style="font-weight: 500;">(425) 747-7777</strong>, that way you don't have to waste precious seconds
+            looking it up. You're welcome.</p>
     </div>
 
     <div id="edge-detection" class="content">
         <header>
-            <h1>-_____-</h1>
+            <h1>Wanna See Something Cool?</h1>
 
         </header>
-        <p>Alright now you're just showing off...</p>
+        <p>Go ahead, click on the button...you know you want to.</p>
+        <button id="test">Click Me!</button>
     </div>
 </body>
 
 <script src="jquery.js"></script>
 <script>
+    //switches tabs
     $(function () {
         $('#top-nav ul li').on('click', function () {
             //figure out which content to show
@@ -137,8 +160,21 @@
             $('#top-nav ul li.selected').removeClass();
 
             //show the new content and select the tab
-            $('#'+panelToShow).addClass('active');
+            $('#' + panelToShow).addClass('active');
             $(this).addClass('selected');
+        })
+    })
+
+    //api call
+    $(function () {
+        $('#test').on('click', function() {
+            $.get('https://timageprocessingapi.azurewebsites.net/contacts/', function (data) {
+                var contacts = "";
+                $.each(data, function (i, item) {
+                    contacts += item.Id + ": " + item.Name + ", " + item.EmailAddress + "\n";
+                });
+                alert(contacts.substring(0, contacts.length - 1));
+            });
         })
     })
 
