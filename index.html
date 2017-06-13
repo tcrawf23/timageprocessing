@@ -171,16 +171,14 @@
     //api call
     $(function () {
         $('#test').on('click', function () {
-            alert("Data is null");
-            //$.get('https://timageprocessingapi.azurewebsites.net/contacts/', function (data) {
-            $.get('http://localhost:64279/contacts/', function (data) {
+            $.get('https://timageprocessingapi.azurewebsites.net/contacts/', function (data) {
+            //$.get('http://localhost:64279/contacts/', function (data) {
                 var contacts = "";
                 $.each(data, function (i, item) {
                     contacts += item.Id + ": " + item.Name + ", " + item.EmailAddress + "\n";
                 });
                 alert(contacts.substring(0, contacts.length - 1));
             });
-            alert("Done");
         });
     });
 
