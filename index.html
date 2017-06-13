@@ -107,6 +107,9 @@
             <h1>Welcome to Timage Processing</h1>
 
         </header>
+        <button id="file-chooser-button">Choose Image</button>
+        <input type="file" id="file-chooser" accept=".jpeg,.jpg,.png" style="display: none">
+        <button style="background-color: white; color: #555; cursor: default; display: none" id="result"></button>
         <p>This site is currently under construction, but trust me, when it's finally finished, you'll probably be underwhelmed.
             As a pre-apology, please enjoy these humorous and/or adorable videos:</p>
         <ul>
@@ -162,21 +165,36 @@
             //show the new content and select the tab
             $('#' + panelToShow).addClass('active');
             $(this).addClass('selected');
-        })
-    })
+        });
+    });
 
     //api call
     $(function () {
-        $('#test').on('click', function() {
-            $.get('https://timageprocessingapi.azurewebsites.net/contacts/', function (data) {
+        $('#test').on('click', function () {
+            alert("Data is null");
+            //$.get('https://timageprocessingapi.azurewebsites.net/contacts/', function (data) {
+            $.get('http://localhost:64279/contacts/', function (data) {
                 var contacts = "";
                 $.each(data, function (i, item) {
                     contacts += item.Id + ": " + item.Name + ", " + item.EmailAddress + "\n";
                 });
                 alert(contacts.substring(0, contacts.length - 1));
             });
-        })
-    })
+            alert("Done");
+        });
+    });
+
+    //open up file explorer to choose image
+    $("#file-chooser-button").click(function (e) {
+        e.preventDefault();
+        $("#file-chooser").trigger('click');
+    });
+
+    //display fake path of chosen image
+    $("#file-chooser").change(function() {
+        document.getElementById("result").innerHTML = "Your image: " + this.value;
+        document.getElementById("result").style.display = "inline-block";
+    });
 
 </script>
 
