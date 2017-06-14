@@ -103,13 +103,17 @@
         </ul>
     </div>
     <div id="k-means" class="content active">
-        <header>
+        <header style="text-align: center">
             <h1>Welcome to Timage Processing</h1>
 
         </header>
-        <button id="file-chooser-button">Choose Image</button>
-        <input type="file" id="file-chooser" accept=".jpeg,.jpg,.png" style="display: none">
-        <button style="background-color: white; color: #555; cursor: default; display: none" id="result"></button>
+        <div style="text-align: center">
+            <img id="image" src="aurora.jpg" style="background-color: white; padding: 20px; margin-bottom: 10px; max-width: 610px; max-height: 610px;"/>
+            <br/>
+            <button id="file-chooser-button">Choose Image</button>
+            <input type="file" id="file-chooser" accept=".jpeg,.jpg,.png" style="display: none">
+        </div>
+        <div style="height: 1px; background-color: #DDD; margin-top: 25px; margin-left: 15px; margin-right: 15px;"></div>
         <p>This site is currently under construction, but trust me, when it's finally finished, you'll probably be underwhelmed.
             As a pre-apology, please enjoy these humorous and/or adorable videos:</p>
         <ul>
@@ -172,7 +176,7 @@
     $(function () {
         $('#test').on('click', function () {
             $.get('https://timageprocessingapi.azurewebsites.net/contacts/', function (data) {
-            //$.get('http://localhost:64279/contacts/', function (data) {
+                //$.get('http://localhost:64279/contacts/', function (data) {
                 var contacts = "";
                 $.each(data, function (i, item) {
                     contacts += item.Id + ": " + item.Name + ", " + item.EmailAddress + "\n";
@@ -188,10 +192,17 @@
         $("#file-chooser").trigger('click');
     });
 
-    //display fake path of chosen image
-    $("#file-chooser").change(function() {
-        document.getElementById("result").innerHTML = "Your image: " + this.value;
-        document.getElementById("result").style.display = "inline-block";
+    //display the chosen image
+    $("#file-chooser").change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(this.files[0]);
+        }
     });
 
 </script>
