@@ -16,9 +16,6 @@
         #top-nav {
             background-color: white;
             height: 49px;
-            border-bottom-style: solid;
-            border-bottom-width: 1px;
-            border-bottom-color: #E8E8E8;
         }
 
         #top-nav ul {
@@ -31,8 +28,8 @@
             color: #777;
             font-size: 14px;
             line-height: 3.5;
-            padding-left: 5px;
-            padding-right: 5px;
+            padding-left: 6px;
+            padding-right: 6px;
             cursor: pointer;
         }
 
@@ -89,7 +86,7 @@
     </style>
 </head>
 
-<body>
+<body style="overflow-y: hidden">
     <div id="top-nav">
         <div style="position:absolute">
             <img src="favicon.png" height="32" style="padding-top: 7px;padding-left: 20px;display: inline-block;">
@@ -102,55 +99,60 @@
             <li rel="edge-detection">Edge Detection</li>
         </ul>
     </div>
-    <div id="k-means" class="content active">
-        <header style="text-align: center">
-            <h1>Welcome to Timage Processing</h1>
+    <div id="main-page" onload="getHeight()" style="overflow-y: scroll">
+        <div style="position: fixed; top: 49px; height: 1px; width: 100%; background-color: rgba(0,0,0,0.04)"></div>
+        <div id="k-means" class="content active">
+            <header style="text-align: center">
+                <h1>Welcome to Timage Processing</h1>
 
-        </header>
-        <div style="text-align: center">
-            <img id="image" src="aurora.jpg" style="background-color: white; padding: 20px; margin-bottom: 10px; max-width: 610px; max-height: 610px;"/>
-            <br/>
-            <button id="file-chooser-button">Choose Image</button>
-            <input type="file" id="file-chooser" accept=".jpeg,.jpg,.png" style="display: none">
+            </header>
+            <div style="text-align: center">
+                <img id="image" src="aurora.jpg" style="background-color: white; padding: 20px; margin-bottom: 10px; max-width: 610px; max-height: 610px;"
+                />
+                <br/>
+                <button id="file-chooser-button">Choose Image</button>
+                <input type="file" id="file-chooser" accept=".jpeg,.jpg,.png" style="display: none">
+            </div>
+            <div style="height: 1px; background-color: #DDD; margin-top: 25px; margin-left: 15px; margin-right: 15px;"></div>
+            <p>This site is currently under construction, but trust me, when it's finally finished, you'll probably be underwhelmed.
+                As a pre-apology, please enjoy these humorous and/or adorable videos:</p>
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=lsTLUSMOgas">https://www.youtube.com/watch?v=lsTLUSMOgas</a></li>
+                <li><a href="https://www.youtube.com/watch?v=bq7FJzMc9tg">https://www.youtube.com/watch?v=bq7FJzMc9tg</a></li>
+                <li><a href="https://www.youtube.com/watch?v=nGeKSiCQkPw">https://www.youtube.com/watch?v=nGeKSiCQkPw</a></li>
+                <li><a href="https://www.youtube.com/watch?v=_OBlgSz8sSM">https://www.youtube.com/watch?v=_OBlgSz8sSM</a></li>
+                <li><a href="https://www.youtube.com/watch?v=grp6sQ3yExU">https://www.youtube.com/watch?v=grp6sQ3yExU</a></li>
+            </ul>
+            <h2>What Will This Site Do?</h2>
+            <p>Great question!</p>
+            <h2>What Can I Do In The Meantime?</h2>
+            <p>Honestly, that's completely up to you and the limits of physics. If I were you, I'd probably post some inspirational
+                quotes on Instagram, binge watch the newest Netflix-original series, down a pint of Ben &amp; Jerry's The
+                Tonight Dough, and then, well, you know...</p>
+            <blockquote>"Never put off until tomorrow what you can do the day after tomorrow."
+                <br> - Mark Twain</blockquote>
         </div>
-        <div style="height: 1px; background-color: #DDD; margin-top: 25px; margin-left: 15px; margin-right: 15px;"></div>
-        <p>This site is currently under construction, but trust me, when it's finally finished, you'll probably be underwhelmed.
-            As a pre-apology, please enjoy these humorous and/or adorable videos:</p>
-        <ul>
-            <li><a href="https://www.youtube.com/watch?v=lsTLUSMOgas">https://www.youtube.com/watch?v=lsTLUSMOgas</a></li>
-            <li><a href="https://www.youtube.com/watch?v=bq7FJzMc9tg">https://www.youtube.com/watch?v=bq7FJzMc9tg</a></li>
-            <li><a href="https://www.youtube.com/watch?v=nGeKSiCQkPw">https://www.youtube.com/watch?v=nGeKSiCQkPw</a></li>
-            <li><a href="https://www.youtube.com/watch?v=_OBlgSz8sSM">https://www.youtube.com/watch?v=_OBlgSz8sSM</a></li>
-            <li><a href="https://www.youtube.com/watch?v=grp6sQ3yExU">https://www.youtube.com/watch?v=grp6sQ3yExU</a></li>
-        </ul>
-        <h2>What Will This Site Do?</h2>
-        <p>Great question!</p>
-        <h2>What Can I Do In The Meantime?</h2>
-        <p>Honestly, that's completely up to you and the limits of physics. If I were you, I'd probably post some inspirational
-            quotes on Instagram, binge watch the newest Netflix-original series, down a pint of Ben &amp; Jerry's The Tonight
-            Dough, and then, well, you know...</p>
-        <blockquote>"Never put off until tomorrow what you can do the day after tomorrow."
-            <br> - Mark Twain</blockquote>
-    </div>
 
-    <div id="texture-synthesis" class="content">
-        <header>
-            <h1>Congratulations!</h1>
+        <div id="texture-synthesis" class="content">
+            <header>
+                <h1>Congratulations!</h1>
 
-        </header>
-        <p>You clicked on the <strong>Texture Synthesis</strong> tab! You should feel proud of your accomplishments. In fact,
-            I think some CanAm pizza is the only appropriate way to reward yourself for this. In fact, the number is
-            <strong style="font-weight: 500;">(425) 747-7777</strong>, that way you don't have to waste precious seconds
-            looking it up. You're welcome.</p>
-    </div>
+            </header>
+            <p>You clicked on the <strong>Texture Synthesis</strong> tab! You should feel proud of your accomplishments. In
+                fact, I think some CanAm pizza is the only appropriate way to reward yourself for this. In fact, the number
+                is
+                <strong style="font-weight: 500;">(425) 747-7777</strong>, that way you don't have to waste precious seconds
+                looking it up. You're welcome.</p>
+        </div>
 
-    <div id="edge-detection" class="content">
-        <header>
-            <h1>Wanna See Something Cool?</h1>
+        <div id="edge-detection" class="content">
+            <header>
+                <h1>Wanna See Something Cool?</h1>
 
-        </header>
-        <p>Go ahead, click on the button...you know you want to.</p>
-        <button id="test">Click Me!</button>
+            </header>
+            <p>Go ahead, click on the button...you know you want to.</p>
+            <button id="test">Click Me!</button>
+        </div>
     </div>
 </body>
 
@@ -204,6 +206,18 @@
             reader.readAsDataURL(this.files[0]);
         }
     });
+
+    function getHeight() {
+        document.getElementById("main-page").style.height = "" + (window.innerHeight - 50) + "px";
+    };
+
+    window.onload = function () {
+        getHeight();
+    };
+
+    window.onresize = function () {
+        getHeight();
+    }
 
 </script>
 
