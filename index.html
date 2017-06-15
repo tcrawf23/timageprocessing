@@ -10,7 +10,8 @@
         body {
             background-color: #F1F1F1;
             margin: 0px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-width: 400px;
         }
 
         #top-nav {
@@ -83,6 +84,19 @@
         a {
             color: #00ABEC
         }
+
+        @media (max-width: 715px) {
+            #title {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 450px) {
+            #top-nav ul li {
+                padding-left: 1.33%;
+                padding-right: 1.33%;
+            }
+        }
     </style>
 </head>
 
@@ -90,7 +104,7 @@
     <div id="top-nav">
         <div style="position:absolute">
             <img src="favicon.png" height="32" style="padding-top: 7px;padding-left: 20px;display: inline-block;">
-            <div style="display: inline-block;vertical-align: top;color: #888;font-size: 18px;line-height:2.6;padding-left: 10px;">
+            <div id="title" style="display: inline-block;vertical-align: top;color: #888;font-size: 18px;line-height:2.6;padding-left: 10px;">
                 <strong style="color: #333;font-weight: 600">timage</strong>processing</div>
         </div>
         <ul style="display: inline-block; width:100%; text-align:center">
