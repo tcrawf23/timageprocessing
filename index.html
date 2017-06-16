@@ -15,8 +15,11 @@
         }
 
         #top-nav {
-            background-color: white;
+            background-color: rgba(255,255,255,0.96);
             height: 49px;
+            position: fixed;
+            width: 100%;
+            top: 0px;
         }
 
         #top-nav ul {
@@ -41,6 +44,10 @@
             border-bottom-style: solid;
             border-bottom-width: 3px;
             font-weight: 500;
+        }
+
+        #main-page {
+            margin-top: 90px;
         }
 
         .content {
@@ -100,7 +107,7 @@
     </style>
 </head>
 
-<body style="overflow-y: hidden">
+<body>
     <div id="top-nav">
         <div style="position:absolute">
             <img src="favicon.png" height="32" style="padding-top: 7px;padding-left: 20px;display: inline-block;">
@@ -112,9 +119,9 @@
             <li rel="texture-synthesis">Texture Synthesis</li>
             <li rel="edge-detection">Edge Detection</li>
         </ul>
-    </div>
-    <div id="main-page" onload="getHeight()" style="overflow-y: scroll">
         <div style="position: fixed; top: 49px; height: 1px; width: 100%; background-color: rgba(0,0,0,0.04)"></div>
+    </div>
+    <div id="main-page">
         <div id="k-means" class="content active">
             <header style="text-align: center">
                 <h1>Welcome to Timage Processing</h1>
@@ -220,18 +227,6 @@
             reader.readAsDataURL(this.files[0]);
         }
     });
-
-    function getHeight() {
-        document.getElementById("main-page").style.height = "" + (window.innerHeight - 50) + "px";
-    };
-
-    window.onload = function () {
-        getHeight();
-    };
-
-    window.onresize = function () {
-        getHeight();
-    }
 
 </script>
 
