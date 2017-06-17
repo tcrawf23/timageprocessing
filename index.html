@@ -15,7 +15,7 @@
         }
 
         #top-nav {
-            background-color: rgba(255,255,255,0.96);
+            background-color: rgba(255, 255, 255, 0.96);
             height: 49px;
             position: fixed;
             width: 100%;
@@ -25,6 +25,9 @@
         #top-nav ul {
             margin: 0;
             padding: 0;
+            display: inline-block;
+            width: 100%;
+            text-align: center
         }
 
         #top-nav ul li {
@@ -46,6 +49,40 @@
             font-weight: 500;
         }
 
+        #top-nav>img {
+            padding: 5px;
+            display: none;
+            position: fixed;
+            right: 15px;
+            top: 12px;
+            cursor: pointer;
+        }
+
+        #hamburger ul {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            width: 100%;
+        }
+
+        #hamburger ul li {
+            display: inline-block;
+            color: #777;
+            font-size: 14px;
+            line-height: 3.5;
+            padding-left: 15px;
+            cursor: pointer;
+        }
+
+        #hamburger ul li.selected {
+            line-height: 3.1;
+            color: #333;
+            border-left-color: #82C925;
+            border-left-style: solid;
+            border-left-width: 3px;
+            font-weight: 500;
+        }
+
         #main-page {
             margin-top: 90px;
         }
@@ -62,6 +99,14 @@
             font-size: 16px;
             color: #555;
             padding: 0 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .displayed {
+            display: none;
         }
 
         button {
@@ -92,16 +137,15 @@
             color: #00ABEC
         }
 
-        @media (max-width: 715px) {
-            #title {
-                display: none !important;
+        @media (max-width: 750px) {
+            #top-nav ul {
+                display: none;
             }
-        }
-
-        @media (max-width: 450px) {
-            #top-nav ul li {
-                padding-left: 1.33%;
-                padding-right: 1.33%;
+            #top-nav>img {
+                display: initial;
+            }
+            .displayed {
+                display: initial;
             }
         }
     </style>
@@ -114,18 +158,26 @@
             <div id="title" style="display: inline-block;vertical-align: top;color: #888;font-size: 18px;line-height:2.6;padding-left: 10px;">
                 <strong style="color: #333;font-weight: 600">timage</strong>processing</div>
         </div>
-        <ul style="display: inline-block; width:100%; text-align:center">
-            <li rel="k-means" class="selected">K-Means</li>
-            <li rel="texture-synthesis">Texture Synthesis</li>
-            <li rel="edge-detection">Edge Detection</li>
+        <ul>
+            <li id="k-means-top" rel="k-means" class="selected">K-Means</li>
+            <li id="texture-synthesis-top" rel="texture-synthesis">Texture Synthesis</li>
+            <li id="edge-detection-top" rel="edge-detection">Edge Detection</li>
         </ul>
+        <img src="hamburger.png" rel="hamburger" height="15">
         <div style="position: fixed; top: 49px; height: 1px; width: 100%; background-color: rgba(0,0,0,0.04)"></div>
     </div>
+    <div id="hamburger" class="hidden" style="position: fixed; height: 100%; width: 249px; background-color: rgba(255,255,255,0.96); right: 0px; top: 49px">
+        <ul>
+            <li id="k-means-ham" rel="k-means" class="selected">K-Means</li><br/>
+            <li id="texture-synthesis-ham" rel="texture-synthesis">Texture Synthesis</li><br/>
+            <li id="edge-detection-ham" rel="edge-detection">Edge Detection</li>
+        </ul>
+    </div>
+    <div id="hamburger-shadow" class="hidden" style="position: fixed; top: 49px; right: 249px; height: 100%; width: 1px; background-color: rgba(0,0,0,0.04)"></div>
     <div id="main-page">
         <div id="k-means" class="content active">
             <header style="text-align: center">
                 <h1>Welcome to Timage Processing</h1>
-
             </header>
             <div style="text-align: center">
                 <img id="image" src="aurora.jpg" style="background-color: white; padding: 20px; margin-bottom: 10px; max-width: 610px; max-height: 610px;"
@@ -181,17 +233,37 @@
 <script>
     //switches tabs
     $(function () {
-        $('#top-nav ul li').on('click', function () {
+        $('ul li').on('click', function () {
             //figure out which content to show
             var panelToShow = $(this).attr('rel');
 
             //hide the current content and deselect the tab
             $('.content.active').removeClass('active');
             $('#top-nav ul li.selected').removeClass();
+            $('#hamburger ul li.selected').removeClass();
 
             //show the new content and select the tab
             $('#' + panelToShow).addClass('active');
-            $(this).addClass('selected');
+            document.getElementById(panelToShow + "-top").className = "selected";
+            document.getElementById(panelToShow + "-ham").className = "selected";
+        });
+    });
+
+    //opens hamburger menu
+    $(function () {
+        $('#top-nav>img').on('click', function () {
+            if (document.getElementById("hamburger").className == "hidden") {
+                $('#hamburger').removeClass('hidden');
+                $('#hamburger').addClass('displayed');
+                $('#hamburger-shadow').removeClass('hidden');
+                $('#hamburger-shadow').addClass('displayed');
+            }
+            else {
+                $('#hamburger').removeClass('displayed');
+                $('#hamburger').addClass('hidden');
+                $('#hamburger-shadow').removeClass('displayed');
+                $('#hamburger-shadow').addClass('hidden');
+            }
         });
     });
 
@@ -227,6 +299,16 @@
             reader.readAsDataURL(this.files[0]);
         }
     });
+
+    //closes the hamburger if the window resizes to larger than 750px
+    window.onresize = function () {
+        if (window.innerWidth > 750) {
+            $('#hamburger').removeClass('displayed');
+            $('#hamburger').addClass('hidden');
+            $('#hamburger-shadow').removeClass('displayed');
+            $('#hamburger-shadow').addClass('hidden');
+        }
+    }
 
 </script>
 
