@@ -281,7 +281,7 @@
     //api call
     $(function () {
         $('#test').on('click', function () {
-            $.get('https://timageprocessingapi.azurewebsites.net/api/contacts/', function (data) {
+            $.get('https://timageprocessingapi.azurewebsites.net/contacts/', function (data) {
                 //$.get('http://localhost:64279/contacts/', function (data) {
                 var contacts = "";
                 $.each(data, function (i, item) {
@@ -308,6 +308,20 @@
             };
 
             reader.readAsDataURL(this.files[0]);
+
+
+            //-----------------------------
+            /*var base64EncodedStr = btoa(unescape(encodeURIComponent(this.files[0])));
+            alert(base64EncodedStr);*/
+
+            $.post({
+                url: 'https://timageprocessingapi.azurewebsites.net/contacts/',
+                //url: 'http://localhost:64279/contacts/',
+                data: 'this message is backwards',
+                success: function (response) {
+                    alert(response);
+                }
+            });
         }
     });
 
