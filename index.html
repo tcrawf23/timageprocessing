@@ -95,6 +95,26 @@
             max-height: 610px;
         }
 
+        #processed-image {
+            box-sizing: border-box;
+            background-color: white;
+            padding: 20px;
+            max-width: 100%;
+            max-height: 610px;
+        }
+
+        #image-border {
+            max-width: 650px;
+            display: inline-block;
+            margin: 14px;
+        }
+
+        #processed-image-border {
+            max-width: 650px;
+            display: inline-block;
+            margin: 14px;
+        }
+
         .content {
             display: none;
         }
@@ -102,11 +122,16 @@
         .content.active {
             display: block;
             margin: 40px auto;
-            max-width: 650px;
+            /*max-width: 650px;*/
             line-height: 1.7;
             font-size: 16px;
             color: #555;
             padding: 0 10px;
+        }
+
+        .text {
+            max-width: 650px;
+            margin: auto;
         }
 
         .hidden {
@@ -158,6 +183,9 @@
             #image {
                 padding: 2.67%;
             }
+            #processed-image {
+                padding: 2.67%;
+            }
         }
     </style>
 </head>
@@ -191,51 +219,62 @@
                 <h1>Welcome to Timage Processing</h1>
             </header>
             <div style="text-align: center; line-height: 0">
-                <img id="image" src="aurora.jpg" />
+                <div id="image-border">
+                    <img id="image" src="aurora.jpg" />
+                </div>
+                <div id="processed-image-border">
+                    <img id="processed-image" src="aurora-processed.jpg">
+                </div>
             </div>
             <div style="text-align: center; margin-top: 20px">
                 <button id="file-chooser-button">Choose Image</button>
                 <input type="file" id="file-chooser" accept=".jpeg,.jpg,.png" style="display: none">
             </div>
-            <div style="height: 1px; background-color: #DDD; margin-top: 25px; margin-left: 15px; margin-right: 15px;"></div>
-            <p>This site is currently under construction, but trust me, when it's finally finished, you'll probably be underwhelmed.
-                As a pre-apology, please enjoy these humorous and/or adorable videos:</p>
-            <ul>
-                <li><a href="https://www.youtube.com/watch?v=lsTLUSMOgas">https://www.youtube.com/watch?v=lsTLUSMOgas</a></li>
-                <li><a href="https://www.youtube.com/watch?v=bq7FJzMc9tg">https://www.youtube.com/watch?v=bq7FJzMc9tg</a></li>
-                <li><a href="https://www.youtube.com/watch?v=nGeKSiCQkPw">https://www.youtube.com/watch?v=nGeKSiCQkPw</a></li>
-                <li><a href="https://www.youtube.com/watch?v=_OBlgSz8sSM">https://www.youtube.com/watch?v=_OBlgSz8sSM</a></li>
-                <li><a href="https://www.youtube.com/watch?v=grp6sQ3yExU">https://www.youtube.com/watch?v=grp6sQ3yExU</a></li>
-            </ul>
-            <h2>What Will This Site Do?</h2>
-            <p>Great question!</p>
-            <h2>What Can I Do In The Meantime?</h2>
-            <p>Honestly, that's completely up to you and the limits of physics. If I were you, I'd probably post some inspirational
-                quotes on Instagram, binge watch the newest Netflix-original series, down a pint of Ben &amp; Jerry's The
-                Tonight Dough, and then, well, you know...</p>
-            <blockquote>"Never put off until tomorrow what you can do the day after tomorrow."
-                <br> - Mark Twain</blockquote>
+            <div class="text">
+                <div style="height: 1px; background-color: #DDD; margin-top: 25px; margin-left: 15px; margin-right: 15px;"></div>
+                <p>This site is currently under construction, but trust me, when it's finally finished, you'll probably be underwhelmed.
+                    As a pre-apology, please enjoy these humorous and/or adorable videos:</p>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=lsTLUSMOgas">https://www.youtube.com/watch?v=lsTLUSMOgas</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=bq7FJzMc9tg">https://www.youtube.com/watch?v=bq7FJzMc9tg</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=nGeKSiCQkPw">https://www.youtube.com/watch?v=nGeKSiCQkPw</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=_OBlgSz8sSM">https://www.youtube.com/watch?v=_OBlgSz8sSM</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=grp6sQ3yExU">https://www.youtube.com/watch?v=grp6sQ3yExU</a></li>
+                </ul>
+                <h2>What Will This Site Do?</h2>
+                <p>Great question!</p>
+                <h2>What Can I Do In The Meantime?</h2>
+                <p>Honestly, that's completely up to you and the limits of physics. If I were you, I'd probably post some inspirational
+                    quotes on Instagram, binge watch the newest Netflix-original series, down a pint of Ben &amp; Jerry's
+                    The Tonight Dough, and then, well, you know...</p>
+                <blockquote>"Never put off until tomorrow what you can do the day after tomorrow."
+                    <br> - Mark Twain</blockquote>
+            </div>
         </div>
 
         <div id="texture-synthesis" class="content">
-            <header>
-                <h1>Congratulations!</h1>
+            <div class="text">
+                <header>
+                    <h1>Congratulations!</h1>
 
-            </header>
-            <p>You clicked on the <strong>Texture Synthesis</strong> tab! You should feel proud of your accomplishments. In
-                fact, I think some CanAm pizza is the only appropriate way to reward yourself for this. In fact, the number
-                is
-                <strong style="font-weight: 500;">(425) 747-7777</strong>, that way you don't have to waste precious seconds
-                looking it up. You're welcome.</p>
+                </header>
+                <p>You clicked on the <strong>Texture Synthesis</strong> tab! You should feel proud of your accomplishments.
+                    In fact, I think some CanAm pizza is the only appropriate way to reward yourself for this. In fact, the
+                    number is
+                    <strong style="font-weight: 500;">(425) 747-7777</strong>, that way you don't have to waste precious
+                    seconds looking it up. You're welcome.</p>
+            </div>
         </div>
 
         <div id="edge-detection" class="content">
-            <header>
-                <h1>Wanna See Something Cool?</h1>
+            <div class="text">
+                <header>
+                    <h1>Wanna See Something Cool?</h1>
 
-            </header>
-            <p>Go ahead, click on the button...you know you want to.</p>
-            <button id="test">Click Me!</button>
+                </header>
+                <p>Go ahead, click on the button...you know you want to.</p>
+                <button id="test">Click Me!</button>
+            </div>
         </div>
     </div>
 </body>
@@ -310,18 +349,21 @@
             reader.readAsDataURL(this.files[0]);
 
 
-            //-----------------------------
-            /*var base64EncodedStr = btoa(unescape(encodeURIComponent(this.files[0])));
-            alert(base64EncodedStr);*/
+            var blob = this.files[0].slice(0, this.files[0].size + 1);
 
-            $.post({
-                url: 'https://timageprocessingapi.azurewebsites.net/contacts/',
-                //url: 'http://localhost:64279/contacts/',
-                data: 'this message is backwards',
-                success: function (response) {
-                    alert(response);
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === 4) {
+                    var image = document.getElementById('processed-image');
+                    var url = window.URL || window.webkitURL;
+                    image.src = url.createObjectURL(this.response);
                 }
             });
+
+            xhr.open("POST", "https://timageprocessingapi.azurewebsites.net/contacts");
+            xhr.responseType = 'blob';
+            //xhr.setRequestHeader("Access-Control-Allow-Origin", "https://timageprocessing.azurewebsites.net");
+            xhr.send(blob);
         }
     });
 
