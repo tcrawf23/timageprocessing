@@ -179,10 +179,7 @@
             .displayed {
                 display: initial;
             }
-            #image {
-                padding: 2.67%;
-            }
-            #processed-image {
+            .image {
                 padding: 2.67%;
             }
         }
@@ -213,20 +210,20 @@
     <div id="main-page">
         <div id="k-means" class="content active">
             <div style="text-align: center; line-height: 0">
-                <div>
+                <div style="display: inline-block">
                     <div class="border">
                         <img id="image" class="image" src="aurora.jpg" />
                     </div>
-                    <div style="text-align: center; margin-top: 20px">
-                        <button id="file-chooser-button" style="margin-right: 5px; background-color: #888;">Choose Image</button>
+                    <div style="text-align: center; margin-top: 20px; margin-bottom: 20px">
+                        <button id="file-chooser-button" style="background-color: #888;">Choose Image</button>
                         <input type="file" id="file-chooser" accept=".jpeg,.jpg,.png" style="display: none">
                     </div>
                 </div>
-                <div>
+                <div style="display: inline-block">
                     <div class="border">
                         <img id="processed-image" class="image" src="aurora-k-means.jpg">
                     </div>
-                    <div style="text-align: center; margin-top: 20px">
+                    <div style="text-align: center; margin-top: 20px;">
                         <select id="num-clusters" style="margin-left: 5px; margin-right: 5px">
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -244,16 +241,23 @@
 
         <div id="grayscale" class="content">
             <div style="text-align: center; line-height: 0">
-                <div class="border">
-                    <img id="image-grayscale" class="image" src="aurora.jpg" />
+                <div style="display: inline-block">
+                    <div class="border">
+                        <img id="image-grayscale" class="image" src="aurora.jpg" />
+                    </div>
+                    <div style="text-align: center; margin-top: 20px; margin-bottom: 20px">
+                        <button id="file-chooser-button-grayscale" style="background-color: #888;">Choose Image</button>
+                        <input type="file" id="file-chooser-grayscale" accept=".jpeg,.jpg,.png" style="display: none">
+                    </div>
                 </div>
-                <div class="border">
-                    <img id="processed-image-grayscale" class="image" src="aurora-grayscale.jpg">
+                <div style="display: inline-block">
+                    <div class="border">
+                        <img id="processed-image-grayscale" class="image" src="aurora-grayscale.jpg">
+                    </div>
+                    <div style="text-align: center; margin-top: 20px">
+                        <button id="go-grayscale">Go!</button>
+                    </div>
                 </div>
-            </div>
-            <div style="text-align: center; margin-top: 20px">
-                <button id="file-chooser-button-grayscale">Choose Image</button>
-                <input type="file" id="file-chooser-grayscale" accept=".jpeg,.jpg,.png" style="display: none">
             </div>
         </div>
     </div>
@@ -262,6 +266,7 @@
 <script src="jquery.js"></script>
 <script>
     var blob;
+    var blobGrayscale;
     //switches tabs
     $(function () {
         $('ul li').on('click', function () {
@@ -295,20 +300,6 @@
                 $('#hamburger-shadow').removeClass('displayed');
                 $('#hamburger-shadow').addClass('hidden');
             }
-        });
-    });
-
-    //api call
-    $(function () {
-        $('#test').on('click', function () {
-            $.get('https://timageprocessingapi.azurewebsites.net/contacts/', function (data) {
-                //$.get('http://localhost:64279/contacts/', function (data) {
-                var contacts = "";
-                $.each(data, function (i, item) {
-                    contacts += item.Id + ": " + item.Name + ", " + item.EmailAddress + "\n";
-                });
-                alert(contacts.substring(0, contacts.length - 1));
-            });
         });
     });
 
@@ -347,8 +338,8 @@
                 }
             });
 
-            var postUrl = "http://localhost:64279/contacts?numClusters=" + $('#num-clusters').val();
-            //var postUrl = "http://timageprocessingapi.azurewebsites.net/contacts?numClusters=" + $('#num-clusters').val();
+            //var postUrl = "http://localhost:64279/kmeans?numClusters=" + $('#num-clusters').val();
+            var postUrl = "http://timageprocessingapi.azurewebsites.net/kmeans?numClusters=" + $('#num-clusters').val();
             xhr.open("POST", postUrl);
             xhr.responseType = 'blob';
             xhr.send(blob);
@@ -372,9 +363,15 @@
 
             reader.readAsDataURL(this.files[0]);
 
+            blobGrayscale = this.files[0].slice(0, this.files[0].size + 1);
+        }
+    });
 
-            var blob = this.files[0].slice(0, this.files[0].size + 1);
+    //send the image to be processed
+    $("#go-grayscale").click(function (e) {
+        e.preventDefault();
 
+        if (blobGrayscale != null) {
             var xhr = new XMLHttpRequest();
             xhr.addEventListener("readystatechange", function () {
                 if (this.readyState === 4) {
@@ -384,11 +381,11 @@
                 }
             });
 
-            var postUrl = "http://localhost:64279/grayscale";
-            //var postUrl = "http://timageprocessingapi.azurewebsites.net/grayscale";
+            //var postUrl = "http://localhost:64279/grayscale";
+            var postUrl = "http://timageprocessingapi.azurewebsites.net/grayscale";
             xhr.open("POST", postUrl);
             xhr.responseType = 'blob';
-            xhr.send(blob);
+            xhr.send(blobGrayscale);
         }
     });
 
